@@ -1,0 +1,133 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (D:\Image Campus\segundo año\graficos\2DEngine\GameEngine\obj\Debug\) contains files shared from another project (Game.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Animation.cpp
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\animation.h(16): warning C4251: 'Animation::frameCoords': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Animation'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\animation.h(25): warning C4251: 'Animation::frameSizeProportion': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Animation'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+  BaseGame.cpp
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(33): warning C4251: 'Renderer::viewMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(34): warning C4251: 'Renderer::projMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\basegame.h(21): warning C4251: 'BaseGame::entityList': class 'std::list<Entity *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'BaseGame'
+          with
+          [
+              _Ty=Entity *
+          ]
+  d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(24): note: see declaration of 'std::list<Entity *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=Entity *
+          ]
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(37): warning C4251: 'Entity::position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(38): warning C4251: 'Entity::scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(39): warning C4251: 'Entity::model': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(17): warning C4251: 'Shape::posVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(18): warning C4251: 'Shape::colorVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(19): warning C4251: 'Shape::texVertex': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\basegame.cpp(30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\basegame.cpp(53): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  CollisionManager.cpp
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(33): warning C4251: 'Renderer::viewMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(34): warning C4251: 'Renderer::projMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(37): warning C4251: 'Entity::position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(38): warning C4251: 'Entity::scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(39): warning C4251: 'Entity::model': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(17): warning C4251: 'Shape::posVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(18): warning C4251: 'Shape::colorVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(19): warning C4251: 'Shape::texVertex': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+  Entity.cpp
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(33): warning C4251: 'Renderer::viewMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(34): warning C4251: 'Renderer::projMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(37): warning C4251: 'Entity::position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(38): warning C4251: 'Entity::scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(39): warning C4251: 'Entity::model': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\basegame.h(21): warning C4251: 'BaseGame::entityList': class 'std::list<Entity *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'BaseGame'
+          with
+          [
+              _Ty=Entity *
+          ]
+  d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(24): note: see declaration of 'std::list<Entity *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=Entity *
+          ]
+  Input.cpp
+  LoadShader.cpp
+  Renderer.cpp
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(33): warning C4251: 'Renderer::viewMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(34): warning C4251: 'Renderer::projMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(37): warning C4251: 'Entity::position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(38): warning C4251: 'Entity::scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(39): warning C4251: 'Entity::model': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+  Shape.cpp
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(33): warning C4251: 'Renderer::viewMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(34): warning C4251: 'Renderer::projMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(37): warning C4251: 'Entity::position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(38): warning C4251: 'Entity::scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(39): warning C4251: 'Entity::model': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(17): warning C4251: 'Shape::posVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(18): warning C4251: 'Shape::colorVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(19): warning C4251: 'Shape::texVertex': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+  Sprite.cpp
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(33): warning C4251: 'Renderer::viewMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\renderer.h(34): warning C4251: 'Renderer::projMatrix': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Renderer'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(37): warning C4251: 'Entity::position': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(38): warning C4251: 'Entity::scale': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\entity.h(39): warning C4251: 'Entity::model': struct 'glm::mat<4,4,glm::f32,0>' needs to have dll-interface to be used by clients of class 'Entity'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(518): note: see declaration of 'glm::mat<4,4,glm::f32,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(17): warning C4251: 'Shape::posVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(18): warning C4251: 'Shape::colorVertex': struct 'glm::vec<3,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(418): note: see declaration of 'glm::vec<3,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\shape.h(19): warning C4251: 'Shape::texVertex': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Shape'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\animation.h(16): warning C4251: 'Animation::frameCoords': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Animation'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+d:\image campus\segundo año\graficos\2dengine\gameengine\src\engine\animation.h(25): warning C4251: 'Animation::frameSizeProportion': struct 'glm::vec<2,float,0>' needs to have dll-interface to be used by clients of class 'Animation'
+  d:\image campus\segundo año\graficos\2dengine\gameengine\libs\glm\glm\fwd.hpp(417): note: see declaration of 'glm::vec<2,float,0>'
+  Texture.cpp
+  Window.cpp
+  Generating Code...
+  Engine.vcxproj -> D:\Image Campus\segundo año\graficos\2DEngine\GameEngine\bin\Debug\Engine.dll
+  Copiando archivos...
+  D:\Image Campus\segundo año\graficos\2DEngine\GameEngine\libs\glew-2.1.0\bin\Release\Win32\glew32.dll
+  1 File(s) copied
+  Copied Glew32.dll
+  Copia finalizada

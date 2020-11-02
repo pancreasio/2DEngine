@@ -1,0 +1,10 @@
+#version 330 core
+in vec3 customColor;
+out vec3 color;
+layout(location = 0) in vec3 position;
+
+void main(){
+color = customColor;
+gl_Position.xyz = position;
+  gl_Position.w = 1.0;
+}
