@@ -147,6 +147,7 @@
     <ClCompile Include="..\src\Engine\Entity.cpp" />
     <ClCompile Include="..\src\Engine\Input.cpp" />
     <ClCompile Include="..\src\Engine\LoadShader.cpp" />
+    <ClCompile Include="..\src\Engine\pugixml.cpp" />
     <ClCompile Include="..\src\Engine\Renderer.cpp" />
     <ClCompile Include="..\src\Engine\Shape.cpp" />
     <ClCompile Include="..\src\Engine\Sprite.cpp" />
@@ -160,6 +161,8 @@
     <ClInclude Include="..\src\Engine\Entity.h" />
     <ClInclude Include="..\src\Engine\Input.h" />
     <ClInclude Include="..\src\Engine\LoadShader.h" />
+    <ClInclude Include="..\src\Engine\pugiconfig.hpp" />
+    <ClInclude Include="..\src\Engine\pugixml.hpp" />
     <ClInclude Include="..\src\Engine\Renderer.h" />
     <ClInclude Include="..\src\Engine\Shape.h" />
     <ClInclude Include="..\src\Engine\Sprite.h" />
