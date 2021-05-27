@@ -353,7 +353,7 @@ MigrationBackup/
 
 #exclude glew files
 
-!/GameEngine/libs/glew-2.1.0/bin/
+!GameEngine/libs/glew-2.1.0/bin/
 !/GameEngine/libs/glew-2.1.0/bin/Release/
 !/GameEngine/libs/glew-2.1.0/bin/Release/Win32/
 !/GameEngine/libs/glew-2.1.0/bin/Release/x64/
