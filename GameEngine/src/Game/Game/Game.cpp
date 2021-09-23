@@ -21,6 +21,7 @@ void Game::Init()
 	Texture bokeTex("../res/BOKEE.png");
 	Texture comuTex("../res/texture.png");
 	Texture animTex("../res/anim.png");
+	Texture padarosTex("../res/padaros.png");
 
 	shape = new Shape({ 0,0,0 }, {100,100,0}, &bokeTex);
 	shape2 = new Shape({ 30.f,30.f,0 }, {100,100,0 }, &comuTex);
