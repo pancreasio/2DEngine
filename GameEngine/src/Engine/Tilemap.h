@@ -5,9 +5,17 @@
 
 #define EXPORTDLL _declspec(dllexport)
 
-class EXPORTDLL Tilemap
+class EXPORTDLL Tilemap : public Shape
 {
-	Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* tex, float tilemapHeight, float tilemapWidth, float tileWidth , int tilemapRows, int tilemapColumns);
+private:
+	int height;
+	int width;
+	int tileHeight;
+	int tilewidth;
+	
+public:
+	Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture, Texture* tilesetTexture);
+	void InitializeTilemap(const char* path);
 };
 
 #endif

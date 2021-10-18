@@ -4,6 +4,7 @@
 #include "Engine/BaseGame.h"
 #include "Engine/Shape.h"
 #include "Engine/Sprite.h"
+#include "Engine/Tilemap.h"
 
 class Game : public BaseGame
 {
@@ -16,6 +17,7 @@ private:
 	Shape* shape;
 	Shape* shape2;
 	Sprite* anim;
+	Tilemap* tilemap;
 	glm::vec2 safePosition;
 	bool safePositionExists;
 };

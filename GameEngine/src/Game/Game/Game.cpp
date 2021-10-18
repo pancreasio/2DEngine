@@ -23,11 +23,12 @@ void Game::Init()
 	Texture animTex("../res/anim.png");
 	Texture padarosTex("../res/padaros.png");
 
-	shape = new Shape({ 0,0,0 }, {100,100,0}, &bokeTex);
+	shape = new Shape({ 300,0,0 }, {100,100,0}, &bokeTex);
 	shape2 = new Shape({ 30.f,30.f,0 }, {100,100,0 }, &comuTex);
 	anim = new Sprite({ 0,0,0 }, { 368, 200, 0 }, &animTex);
 	anim->CreateAnimation(368, 368 / 8, 4);
 	anim->SetCurrentAnimation(8, 0, 2);
+	tilemap = new Tilemap({ 0,0,0 }, { 300,300,0 },transparentTexture, &padarosTex);
 	safePositionExists = false;
 	safePosition = { 0.f,0.f };
 	GameLoop();

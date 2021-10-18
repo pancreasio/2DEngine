@@ -36,6 +36,7 @@ BaseGame::BaseGame(int screenWidth, int screenHeight)
 	Entity::renderer = renderer;
 	Entity::programID = renderer->GetShader();
 	lastFrameTime = 0.f;
+	transparentTexture = new Texture("../res/transparent.png");
 }
 
 BaseGame::~BaseGame()

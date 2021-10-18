@@ -8,6 +8,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "CollisionManager.h"
+#include "Texture.h"
 
 class Entity;
 
@@ -27,6 +28,7 @@ private:
 protected:
 	Input* input;
 	CollisionManager* collisionManager;
+	Texture* transparentTexture;
 };
 
 #endif
