@@ -7,10 +7,11 @@
 
 class EXPORTDLL Tile : public Shape
 {
+public:
+	Tile() : Shape(){};
 	Tile(glm::vec3 pos, glm::vec3 scale, Texture* tex, bool solid, float Ucoord, float Vcoord, float tileWidth, float tileHeight);
 	~Tile();
 
-public:
 	bool isSolid;
 };
 
