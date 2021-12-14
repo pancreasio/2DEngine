@@ -9,7 +9,7 @@
 
 #define EXPORTDLL _declspec(dllexport)
 
-class EXPORTDLL Tilemap : public Shape
+class EXPORTDLL Tilemap
 {
 private:
 	int height;
@@ -22,7 +22,9 @@ private:
 	int tilesetRows;
 	int tilesetColums;
 
-	Texture* noTile;
+	glm::vec3 tilesetScale;
+	glm::vec3 tilesetPosition;
+	
 	Texture* tileset;
 
 	float zeroXPosition;
@@ -34,7 +36,7 @@ private:
 	std::list<Tile*> solidTileList;
 	
 public:
-	Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture);
+	Tilemap(glm::vec3 pos, glm::vec3 scale);
 	void InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture);
 	void SetSolidTiles(std::list<int> solidTileList);
 	int GetHeight() { return height; }

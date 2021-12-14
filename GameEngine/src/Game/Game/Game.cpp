@@ -29,7 +29,7 @@ void Game::Init()
 	anim->CreateAnimation(368, 368 / 8, 4);
 	anim->SetCurrentAnimation(8, 0, 2);
 	
-	tilemap = new Tilemap({ 0,0,0 }, { 3.f,3.f,0 },transparentTexture);
+	tilemap = new Tilemap({ 0.f,0.f,0.f }, { 3.f,3.f,1.f });
 	tilemap->SetSolidTiles({ 3 });
 	tilemap->InitializeTilemap("../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex);
 	safePositionExists = false;

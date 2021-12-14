@@ -5,9 +5,10 @@
 
 #include "pugixml.hpp"
 
-Tilemap::Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture) : Shape(pos, scale, backgroundTexture)
+Tilemap::Tilemap(glm::vec3 pos, glm::vec3 scale)
 {
-
+	tilesetPosition = pos;
+	tilesetScale = scale;
 }
 
 void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture)
@@ -33,9 +34,8 @@ void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath
 	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), ' '), tilemapData.end());
 	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), '\n'), tilemapData.end());
 
-	zeroXPosition = GetPosition().x - (float)width * scale.x *  (float)tileWidth / 2.f;
-	zeroYPosition = GetPosition().y + (float)height * scale.y * (float)tileHeight / 2.f;
-
+	zeroXPosition = tilesetPosition.x * tilesetScale.x - (float)width * tilesetScale.x *  (float)tileWidth / 2.f;
+	zeroYPosition = tilesetPosition.y * tilesetScale.y + (float)height * tilesetScale.y * (float)tileHeight / 2.f;
 	
 	int dataCounter = 0;
 	for (int i = 0; i < height; i++)
@@ -90,14 +90,14 @@ Tile* Tilemap::GetSolidTile(int tileNumber)
 
 Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
 {
-	float resultXPosition = zeroXPosition + (float)xPosition * tileWidth * scale.x;
-	float resultYPosition = zeroYPosition - (float)yPosition * tileHeight * scale.y;
+	float resultXPosition = zeroXPosition + (float)xPosition * tileWidth * tilesetScale.x;
+	float resultYPosition = zeroYPosition - (float)yPosition * tileHeight * tilesetScale.y;
 	glm::vec3 resultPosition = { resultXPosition, resultYPosition, 0.f };
 	float resultUcoord = getXTileCoordinate(tileNumber);
 	float resultVcoord = glm::abs(getYTileCoordinate(tileNumber) - tilesetRows + 1);
 	float resultWidth = 1.f / (float)tilesetColums;
 	float resultHeight = 1.f / (float)tilesetRows;
-	glm::vec3 resultScale = { tileWidth * scale.x, tileHeight * scale.y,1.f };
+	glm::vec3 resultScale = { tileWidth * tilesetScale.x, tileHeight * tilesetScale.y,1.f };
 
 	return new Tile(resultPosition, resultScale, tileset, resultUcoord, resultVcoord, resultWidth, resultHeight);
 
