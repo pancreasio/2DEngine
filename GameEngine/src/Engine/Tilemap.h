@@ -31,6 +31,7 @@ private:
 	std::list<int> solidTiles;
 	
 	std::list<Tile*> tileList;
+	std::list<Tile*> solidTileList;
 	
 public:
 	Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture);
@@ -39,7 +40,9 @@ public:
 	int GetHeight() { return height; }
 	int GetTilesetTileCount() { return tilesetTilecount; }
 	int GetTileCount();
+	int GetSolidTileCount();
 	Tile* GetTile(int tileNumber);
+	Tile* GetSolidTile(int tileNumber);
 
 protected:
 	Tile* InstantiateTile(int xPosition, int yPosition, int tileNumber);

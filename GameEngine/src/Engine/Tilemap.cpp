@@ -43,7 +43,12 @@ void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath
 		for (int j = 0; j < width; j++)
 		{
 			if (tilemapData[dataCounter] > 48)
-				tileList.push_back(InstantiateTile(j, i, tilemapData[dataCounter] - 49));
+			{
+				Tile* newTile = InstantiateTile(j, i, tilemapData[dataCounter] - 49);
+				tileList.push_back(newTile);
+				if(IsSolid(tilemapData[dataCounter] - 48))
+					solidTileList.push_back(newTile);
+			}
 			
 			dataCounter++;
 		}
@@ -60,9 +65,23 @@ int Tilemap::GetTileCount()
 	return tileList.size();
 }
 
+int Tilemap::GetSolidTileCount()
+{
+	return solidTileList.size();
+}
+
 Tile* Tilemap::GetTile(int tileNumber)
 {
 	std::list<Tile*>::iterator listIterator = tileList.begin();
+
+	std::advance(listIterator, tileNumber);
+
+	return *listIterator;
+}
+
+Tile* Tilemap::GetSolidTile(int tileNumber)
+{
+	std::list<Tile*>::iterator listIterator = solidTileList.begin();
 
 	std::advance(listIterator, tileNumber);
 
@@ -80,9 +99,7 @@ Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
 	float resultHeight = 1.f / (float)tilesetRows;
 	glm::vec3 resultScale = { tileWidth * scale.x, tileHeight * scale.y,1.f };
 
-
-
-	return new Tile(resultPosition, resultScale, tileset, IsSolid(tileNumber+1), resultUcoord, resultVcoord, resultWidth, resultHeight);
+	return new Tile(resultPosition, resultScale, tileset, resultUcoord, resultVcoord, resultWidth, resultHeight);
 
 }
 

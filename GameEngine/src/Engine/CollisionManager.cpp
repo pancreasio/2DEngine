@@ -16,9 +16,9 @@ bool CollisionManager::CheckCollision(Shape shape1, Shape shape2)
 
 bool CollisionManager::CheckCollision(Shape shape, Tilemap tilemap)
 {
-	for(int i=0; i< tilemap.GetTileCount(); i++)
+	for(int i=0; i< tilemap.GetSolidTileCount(); i++)
 	{
-		if (tilemap.GetTile(i)->isSolid && CheckCollision(shape, (Shape)*tilemap.GetTile(i)))
+		if (CheckCollision(shape, (Shape)*tilemap.GetSolidTile(i)))
 		{
 			return true;
 		}
