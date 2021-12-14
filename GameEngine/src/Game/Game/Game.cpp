@@ -28,9 +28,10 @@ void Game::Init()
 	anim = new Sprite({ 0,0,0 }, { 368, 200, 0 }, &animTex);
 	anim->CreateAnimation(368, 368 / 8, 4);
 	anim->SetCurrentAnimation(8, 0, 2);
-	tilemap = new Tilemap({ 0,0,0 }, { 300,300,0 },transparentTexture);
+	tilemap = new Tilemap({ -500,-500,0 }, { 0.7f,0.7f,0 },transparentTexture);
 	tilemap->SetSolidTiles({ 1,2,4 });
 	tilemap->InitializeTilemap("../res/PadarosTilemap.xml", "../res/PadarosTileset.xml", &padarosTex, transparentTexture);
+	std::cout<<tilemap->GetHeight()<<"   "<<tilemap->GetTilesetTileCount();
 	safePositionExists = false;
 	safePosition = { 0.f,0.f };
 	GameLoop();

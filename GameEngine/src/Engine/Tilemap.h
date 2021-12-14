@@ -19,6 +19,8 @@ private:
 	int tilesetHeight;
 	int tilesetWidth;
 	int tilesetTilecount;
+	int tilesetRows;
+	int tilesetColums;
 
 	Texture* noTile;
 	Texture* tileset;
@@ -34,6 +36,8 @@ public:
 	Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture);
 	void InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture, Texture* noTileTexture);
 	void SetSolidTiles(std::list<int> solidTileList);
+	int GetHeight() { return height; }
+	int GetTilesetTileCount() { return tilesetTilecount; }
 
 protected:
 	Tile* InstantiateTile(int xPosition, int yPosition, int tileNumber);

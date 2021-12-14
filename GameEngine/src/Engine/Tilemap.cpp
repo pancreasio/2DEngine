@@ -1,10 +1,13 @@
 #include "Tilemap.h"
 
+#include <iostream>
+#include <algorithm>
+
 #include "pugixml.hpp"
 
 Tilemap::Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture) : Shape(pos, scale, backgroundTexture)
 {
-	
+
 }
 
 void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture, Texture* noTileTexture)
@@ -17,23 +20,34 @@ void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath
 	width = tilemapFile.child("map").attribute("width").as_int();
 
 	tileHeight = tilemapFile.child("map").attribute("tileheight").as_int();
-	tileWidth = tilemapFile.child("map").attribute("tileWidth").as_int();
+	tileWidth = tilemapFile.child("map").attribute("tilewidth").as_int();
+
 
 	pugi::xml_document tilesetFile;
 	pugi::xml_parse_result tilesetResult = tilesetFile.load_file(tileSetPath);
-	tilesetWidth = tilesetFile.child("tileset").attribute("columns").as_int();
+	tilesetColums = tilesetFile.child("tileset").attribute("columns").as_int();
 	tilesetTilecount = tilesetFile.child("tileset").attribute("tilecount").as_int();
-	tilesetHeight = tilesetTilecount / tilesetWidth;
+	tilesetRows = tilesetTilecount / tilesetColums;
 
-	zeroXPosition = position.x - (float)width * (float)tileWidth / 2.f + (float)tileWidth/2.f;
-	zeroYPosition = position.y + (float)height * (float)tileHeight / 2.f - (float)tileHeight/2.f;
-	
-	for (int i = 0; i < 10; i++)
+	std::string tilemapData = tilemapFile.child("map").child("layer").child("data").text().as_string();
+	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), ','), tilemapData.end());
+	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), ' '), tilemapData.end());
+	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), '\n'), tilemapData.end());
+
+	zeroXPosition = position.x - (float)width * (float)tileWidth / 2.f;
+	zeroYPosition = position.y + (float)height * (float)tileHeight / 2.f;
+
+	int dataCounter = 0;
+	for (int i = 0; i < width; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < height; j++)
 		{
-			tileList.push_back(InstantiateTile(i, j, 4));
+			std::cout << tilemapData[dataCounter];
+			if (tilemapData[dataCounter] > 0)
+				tileList.push_back(InstantiateTile(i, j, tilemapData[dataCounter] - 49));
+			dataCounter++;
 		}
+		std::cout << std::endl;
 	}
 }
 
@@ -44,17 +58,23 @@ void Tilemap::SetSolidTiles(std::list<int> solidTileList)
 
 Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
 {
-	float resultXPosition = zeroXPosition + (float)xPosition * (float)tileWidth;
-	float resultYPosition = zeroYPosition - (float)yPosition * (float)tileHeight;
-	float resultUcoord = (float)getXTileCoordinate(tileNumber) * (float)tileWidth / (float)tilesetWidth * (float)tileWidth;
-	float resultVcoord = (float)getYTileCoordinate(tileNumber) * (float)tileHeight / (float)tilesetHeight * (float)tileHeight;
-	
-	return new Tile({resultXPosition, resultYPosition,0.f},scale,tileset, IsSolid(tileNumber), resultUcoord, resultVcoord, (float)tileWidth, (float)tileHeight);
+	float resultXPosition = zeroXPosition + (float)xPosition * tileWidth * scale.x;
+	float resultYPosition = zeroYPosition - (float)yPosition * tileHeight * scale.x;
+	float resultUcoord = getXTileCoordinate(tileNumber);
+	float resultVcoord = glm::abs(getYTileCoordinate(tileNumber) - tilesetRows + 1);
+	float resultWidth = 1.f / (float)tilesetColums;
+	float resultHeight = 1.f / (float)tilesetRows;
+	glm::vec3 resultScale = { tileWidth * scale.x, tileHeight * scale.y,1.f };
+
+
+
+	return new Tile({ resultXPosition, resultYPosition,0.f }, resultScale, tileset, IsSolid(tileNumber), resultUcoord, resultVcoord, resultWidth, resultHeight);
+
 }
 
 bool Tilemap::IsSolid(int tileNumber)
 {
-	for(std::list<int>::iterator it = solidTiles.begin(); it!= solidTiles.end(); ++it)
+	for (std::list<int>::iterator it = solidTiles.begin(); it != solidTiles.end(); ++it)
 	{
 		if (tileNumber == *it)
 			return true;
@@ -64,10 +84,10 @@ bool Tilemap::IsSolid(int tileNumber)
 
 int Tilemap::getXTileCoordinate(int tileNumber)
 {
-	return tileNumber - getYTileCoordinate(tileNumber) * tilesetWidth;
+	return tileNumber - getYTileCoordinate(tileNumber) * tilesetColums;
 }
 
 int Tilemap::getYTileCoordinate(int tileNumber)
 {
-	return (int) floorf((float)tileNumber / (float)tilesetWidth);
+	return (int)floorf((float)tileNumber / (float)tilesetColums);
 }
