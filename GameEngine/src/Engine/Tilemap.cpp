@@ -38,13 +38,13 @@ void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath
 	zeroYPosition = position.y + (float)height * (float)tileHeight / 2.f;
 
 	int dataCounter = 0;
-	for (int i = 0; i < width; i++)
+	for (int i = 0; i < height; i++)
 	{
-		for (int j = 0; j < height; j++)
+		for (int j = 0; j < width; j++)
 		{
 			std::cout << tilemapData[dataCounter];
 			if (tilemapData[dataCounter] > 0)
-				tileList.push_back(InstantiateTile(i, j, tilemapData[dataCounter] - 49));
+				tileList.push_back(InstantiateTile(j, i, tilemapData[dataCounter] - 49));
 			dataCounter++;
 		}
 		std::cout << std::endl;
@@ -59,7 +59,8 @@ void Tilemap::SetSolidTiles(std::list<int> solidTileList)
 Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
 {
 	float resultXPosition = zeroXPosition + (float)xPosition * tileWidth * scale.x;
-	float resultYPosition = zeroYPosition - (float)yPosition * tileHeight * scale.x;
+	float resultYPosition = zeroYPosition - (float)yPosition * tileHeight * scale.y;
+	glm::vec3 resultPosition = { resultXPosition, resultYPosition, 0.f };
 	float resultUcoord = getXTileCoordinate(tileNumber);
 	float resultVcoord = glm::abs(getYTileCoordinate(tileNumber) - tilesetRows + 1);
 	float resultWidth = 1.f / (float)tilesetColums;
@@ -68,7 +69,7 @@ Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
 
 
 
-	return new Tile({ resultXPosition, resultYPosition,0.f }, resultScale, tileset, IsSolid(tileNumber), resultUcoord, resultVcoord, resultWidth, resultHeight);
+	return new Tile(resultPosition, resultScale, tileset, IsSolid(tileNumber), resultUcoord, resultVcoord, resultWidth, resultHeight);
 
 }
 
