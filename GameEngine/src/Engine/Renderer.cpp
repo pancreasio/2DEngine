@@ -102,5 +102,4 @@ void Renderer::RenderEntity(Entity* entityToRender)
 	glBindTexture(GL_TEXTURE_2D, entityToRender->GetTexturePointer()->GetTexture());
 
 	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT, 0);
-	std::cout << std::endl;
 }

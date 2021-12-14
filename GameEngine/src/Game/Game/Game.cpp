@@ -24,16 +24,17 @@ void Game::Init()
 	Texture padarosTex("../res/padaros.png");
 
 	shape = new Shape({ 300,0,0 }, {100,100,0}, &bokeTex);
-	shape2 = new Shape({ 30.f,30.f,0 }, {100,100,0 }, &comuTex);
-	anim = new Sprite({ 0,0,0 }, { 368, 200, 0 }, &animTex);
+	shape2 = new Shape({ 100.f,0.f,1.f }, {90,90,0 }, &comuTex);
+	anim = new Sprite({ 200,0,0 }, { 36.8f, 20, 0 }, &animTex);
 	anim->CreateAnimation(368, 368 / 8, 4);
 	anim->SetCurrentAnimation(8, 0, 2);
-	tilemap = new Tilemap({ -500,-500,0 }, { 0.7f,0.7f,0 },transparentTexture);
-	tilemap->SetSolidTiles({ 1,2,4 });
-	tilemap->InitializeTilemap("../res/PadarosTilemap.xml", "../res/PadarosTileset.xml", &padarosTex, transparentTexture);
-	std::cout<<tilemap->GetHeight()<<"   "<<tilemap->GetTilesetTileCount();
+	
+	tilemap = new Tilemap({ 0,0,0 }, { 0.7f,0.7f,0 },transparentTexture);
+	tilemap->SetSolidTiles({ 1,5,7 });
+	tilemap->InitializeTilemap("../res/PadarosTilemap.xml", "../res/PadarosTileset.xml", &padarosTex);
 	safePositionExists = false;
 	safePosition = { 0.f,0.f };
+
 	GameLoop();
 }
 
@@ -84,21 +85,21 @@ void Game::Update(const float deltaTime)
 	//translating
 	if (input->GetKey(GLFW_KEY_A))
 	{
-		shape2->Translate(-60.f, { 1.0f,0.0f,0.0f });
+		shape2->Translate(-60.f *shapeMovespeed, { 1.0f,0.0f,0.0f });
 	}
 
 	if (input->GetKey(GLFW_KEY_D))
 	{
-		shape2->Translate(60.f, { 1.0f,0.0f,0.0f });
+		shape2->Translate(60.f*shapeMovespeed, { 1.0f,0.0f,0.0f });
 	}
 
 	if (input->GetKey(GLFW_KEY_W))
 	{
-		shape2->Translate(60.f, { 0.0f,1.0f,0.0f });
+		shape2->Translate(60.f*shapeMovespeed, { 0.0f,1.0f,0.0f });
 	}
 	if (input->GetKey(GLFW_KEY_S))
 	{
-		shape2->Translate(-60.f, { 0.0f,1.0f,0.0f });
+		shape2->Translate(-60.f*shapeMovespeed, { 0.0f,1.0f,0.0f });
 	}
 
 	if (input->GetKey(GLFW_KEY_LEFT))
@@ -126,7 +127,7 @@ void Game::Update(const float deltaTime)
 
 	//collisions
 
-	if (collisionManager->CheckCollision(*shape, *shape2)) 
+	/*if (collisionManager->CheckCollision(*shape, *shape2)) 
 	{
 		if(safePositionExists)
 		shape2->SetPosition(safePosition);
@@ -135,7 +136,19 @@ void Game::Update(const float deltaTime)
 	{
 		safePosition = shape2->GetPosition();
 		safePositionExists = true;
+	}*/
+	
+	if(collisionManager->CheckCollision(*shape2, *tilemap))
+	{
+		if (safePositionExists)
+			shape2->SetPosition(safePosition);
 	}
+	else
+	{
+		safePosition = shape2->GetPosition();
+		safePositionExists = true;
+	}
+	
 
 	if (input->GetKey(GLFW_KEY_SPACE)) 
 	{

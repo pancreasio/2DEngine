@@ -34,10 +34,12 @@ private:
 	
 public:
 	Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture);
-	void InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture, Texture* noTileTexture);
+	void InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture);
 	void SetSolidTiles(std::list<int> solidTileList);
 	int GetHeight() { return height; }
 	int GetTilesetTileCount() { return tilesetTilecount; }
+	int GetTileCount();
+	Tile* GetTile(int tileNumber);
 
 protected:
 	Tile* InstantiateTile(int xPosition, int yPosition, int tileNumber);

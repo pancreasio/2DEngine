@@ -57,7 +57,6 @@ void Entity::Scale(glm::vec3 scaleValues)
 {
 	model = glm::scale(model, scaleValues);
 	scale *= scaleValues;
-	std::cout << scale.x << std::endl;
 }
 
 void Entity::Translate(float value, glm::vec3 axis)

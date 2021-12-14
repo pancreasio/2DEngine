@@ -10,10 +10,9 @@ Tilemap::Tilemap(glm::vec3 pos, glm::vec3 scale, Texture* backgroundTexture) : S
 
 }
 
-void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture, Texture* noTileTexture)
+void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture)
 {
 	tileset = tilesetTexture;
-	noTile = noTileTexture;
 	pugi::xml_document tilemapFile;
 	pugi::xml_parse_result tilemapResult = tilemapFile.load_file(tileMapPath);
 	height = tilemapFile.child("map").attribute("height").as_int();
@@ -34,26 +33,40 @@ void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath
 	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), ' '), tilemapData.end());
 	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), '\n'), tilemapData.end());
 
-	zeroXPosition = position.x - (float)width * (float)tileWidth / 2.f;
-	zeroYPosition = position.y + (float)height * (float)tileHeight / 2.f;
+	zeroXPosition = GetPosition().x - (float)width * scale.x *  (float)tileWidth / 2.f;
+	zeroYPosition = GetPosition().y + (float)height * scale.y * (float)tileHeight / 2.f;
 
+	
 	int dataCounter = 0;
 	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
 		{
-			std::cout << tilemapData[dataCounter];
-			if (tilemapData[dataCounter] > 0)
+			if (tilemapData[dataCounter] > 48)
 				tileList.push_back(InstantiateTile(j, i, tilemapData[dataCounter] - 49));
+			
 			dataCounter++;
 		}
-		std::cout << std::endl;
 	}
 }
 
 void Tilemap::SetSolidTiles(std::list<int> solidTileList)
 {
 	solidTiles = solidTileList;
+}
+
+int Tilemap::GetTileCount()
+{
+	return tileList.size();
+}
+
+Tile* Tilemap::GetTile(int tileNumber)
+{
+	std::list<Tile*>::iterator listIterator = tileList.begin();
+
+	std::advance(listIterator, tileNumber);
+
+	return *listIterator;
 }
 
 Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
@@ -69,7 +82,7 @@ Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
 
 
 
-	return new Tile(resultPosition, resultScale, tileset, IsSolid(tileNumber), resultUcoord, resultVcoord, resultWidth, resultHeight);
+	return new Tile(resultPosition, resultScale, tileset, IsSolid(tileNumber+1), resultUcoord, resultVcoord, resultWidth, resultHeight);
 
 }
 

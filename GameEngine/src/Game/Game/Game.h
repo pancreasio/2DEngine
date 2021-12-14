@@ -20,6 +20,7 @@ private:
 	Tilemap* tilemap;
 	glm::vec2 safePosition;
 	bool safePositionExists;
+	float shapeMovespeed = 5.f;
 };
 
 #endif

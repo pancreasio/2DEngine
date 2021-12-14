@@ -10,6 +10,7 @@ Tile::Tile(glm::vec3 pos, glm::vec3 scale, Texture* tex, bool solid, float Ucoor
 		   posVertex[3].x, posVertex[3].y, posVertex[3].z, colorVertex[3].x, colorVertex[3].y, colorVertex[3].z, (Ucoord + 1) * tileWidth, Vcoord * tileHeight
 	};
 
+	isSolid = solid;
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 }
