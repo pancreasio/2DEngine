@@ -21,7 +21,7 @@ void Game::Init()
 	Texture bokeTex("../res/BOKEE.png");
 	Texture comuTex("../res/texture.png");
 	Texture animTex("../res/anim.png");
-	Texture padarosTex("../res/padaros.png");
+	Texture terrainTex("../res/terrain sprite.png");
 
 	shape = new Shape({ 300,0,0 }, {100,100,0}, &bokeTex);
 	shape2 = new Shape({ 100.f,0.f,1.f }, {90,90,0 }, &comuTex);
@@ -29,9 +29,9 @@ void Game::Init()
 	anim->CreateAnimation(368, 368 / 8, 4);
 	anim->SetCurrentAnimation(8, 0, 2);
 	
-	tilemap = new Tilemap({ 0,0,0 }, { 0.7f,0.7f,0 },transparentTexture);
-	tilemap->SetSolidTiles({ 1,5,7 });
-	tilemap->InitializeTilemap("../res/PadarosTilemap.xml", "../res/PadarosTileset.xml", &padarosTex);
+	tilemap = new Tilemap({ 0,0,0 }, { 3.f,3.f,0 },transparentTexture);
+	tilemap->SetSolidTiles({ 3 });
+	tilemap->InitializeTilemap("../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex);
 	safePositionExists = false;
 	safePosition = { 0.f,0.f };
 
