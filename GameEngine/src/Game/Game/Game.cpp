@@ -27,7 +27,7 @@ void Game::Init()
 	shape2 = new Shape({ 100.f,0.f,1.f }, {90,90,0 }, &comuTex);
 	anim = new Sprite({ 200,0,0 }, { 36.8f, 20, 0 }, &animTex);
 	anim->CreateAnimation(368, 368 / 8, 4);
-	anim->SetCurrentAnimation(8, 0, 2);
+	anim->SetCurrentAnimation(8, 0, 0.4);
 	
 	tilemap = new Tilemap({ 0.f,0.f,0.f }, { 3.f,3.f,1.f });
 	tilemap->SetSolidTiles({ 3 });
@@ -41,7 +41,6 @@ void Game::Init()
 void Game::Update(const float deltaTime)
 {
 	//scaling
-	anim->UpdateCurrentAnimation(deltaTime);
 
 	if (input->GetKey(GLFW_KEY_H))
 	{
@@ -105,24 +104,24 @@ void Game::Update(const float deltaTime)
 	if (input->GetKey(GLFW_KEY_LEFT))
 	{
 		anim->Translate(-60.f, { 1.0f,0.0f,0.0f });
-		anim->SetCurrentAnimation(8, 0, 2);
+		anim->SetCurrentAnimation(8, 0, 0.4);
 	}
 
 	if (input->GetKey(GLFW_KEY_RIGHT))
 	{
 		anim->Translate(60.f, { 1.0f,0.0f,0.0f });
-		anim->SetCurrentAnimation(8, 0, 2);
+		anim->SetCurrentAnimation(8, 0, 0.4);
 	}
 
 	if (input->GetKey(GLFW_KEY_UP))
 	{
 		anim->Translate(60.f, { 0.0f,1.0f,0.0f });
-		anim->SetCurrentAnimation(8, 0, 2);
+		anim->SetCurrentAnimation(8, 0, 0.4);
 	}
 	if (input->GetKey(GLFW_KEY_DOWN))
 	{
 		anim->Translate(-60.f, { 0.0f,1.0f,0.0f });
-		anim->SetCurrentAnimation(8, 0, 2);
+		anim->SetCurrentAnimation(8, 0, 0.4);
 	}
 
 	//collisions
@@ -154,4 +153,6 @@ void Game::Update(const float deltaTime)
 	{
 		shape2->SetPosition({ 30.f,30.f });
 	}
+
+	anim->UpdateCurrentAnimation(deltaTime);
 }

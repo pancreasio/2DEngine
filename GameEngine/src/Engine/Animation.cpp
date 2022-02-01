@@ -17,7 +17,7 @@ void Animation::UpdateAnimation(float timer)
 {
 	if (frameTime >= animationTime / framesCount)
 	{
-		frameTime = 0;
+		frameTime = timer - animationTime / framesCount;
 		actualFrame++;
 		if (actualFrame >= framesCount)
 			actualFrame = 0;
@@ -41,14 +41,11 @@ glm::vec2 Animation::GetCurrentFrameCoords(int index)
 	return frameCoords[index];
 }
 
-void Animation::SelectAnimationByRow(int frameCount, int row,float animationTime)
+void Animation::SelectAnimationByRow(int frameCount, int row, float animationTime)
 {
 	framesCount = frameCount;
 	this->animationTime = animationTime;
-	if (actualRow != row)
-	{
-		actualFrame = 0;
-		actualRow = row;
-		frameTime = 0;
-	}
+	actualFrame = 0;
+	actualRow = row;
+	frameTime = 0;
 }
