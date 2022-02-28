@@ -14,7 +14,6 @@
 Entity::Entity()
 {
 	position = { 0, 0, 0 };
-	BaseGame::entityList.push_front(this);
 
 	model = glm::mat4(1.0f);
 	model[3].x += position.x;
@@ -31,7 +30,6 @@ unsigned int Entity::programID = NULL;
 Entity::Entity(glm::vec3 pos, Texture* tex)
 {
 	position = pos;
-	BaseGame::entityList.push_front(this);
 	texture = tex;
 
 	model = glm::mat4(1.0f);

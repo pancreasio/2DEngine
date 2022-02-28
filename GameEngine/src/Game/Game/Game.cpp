@@ -23,15 +23,17 @@ void Game::Init()
 	Texture animTex("../res/anim.png");
 	Texture terrainTex("../res/terrain sprite.png");
 
-	shape = new Shape({ 300,0,0 }, {100,100,0}, &bokeTex);
-	shape2 = new Shape({ 100.f,0.f,1.f }, {90,90,0 }, &comuTex);
-	anim = new Sprite({ 200,0,0 }, { 36.8f, 20, 0 }, &animTex);
+	shape = CreateShape({ 300,0,0 }, { 100,100,0 }, &bokeTex, 3);
+	shape2 = CreateShape({ 100.f,0.f,1.f }, { 90,90,0 }, &comuTex,2);
+
+	anim = CreateSprite({ 200,0,0 }, { 36.8f, 20, 0 }, &animTex, 4);
 	anim->CreateAnimation(368, 368 / 8, 4);
 	anim->SetCurrentAnimation(8, 0, 0.4);
 	
 	tilemap = new Tilemap({ 0.f,0.f,0.f }, { 3.f,3.f,1.f });
 	tilemap->SetSolidTiles({ 3 });
-	tilemap->InitializeTilemap("../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex);
+	/*tilemap->InitializeTilemap("../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex);*/
+	InitializeTilemap(tilemap,"../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex,3);
 	safePositionExists = false;
 	safePosition = { 0.f,0.f };
 

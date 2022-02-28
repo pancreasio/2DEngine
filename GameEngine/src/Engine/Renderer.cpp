@@ -75,6 +75,14 @@ void Renderer::SetBackgroundColor(float r, float g, float b, float a) const
 	glClearColor(r, g, b, a);
 }
 
+void Renderer::AddEntityToLayer(Entity* entityToAdd, int targetLayer)
+{
+	if (layerMap.find(targetLayer) == layerMap.end()) // true if layer does not exist yet
+		layerMap.insert({ targetLayer, {entityToAdd}});
+	else
+		layerMap[targetLayer].push_back(entityToAdd);
+}
+
 glm::mat4 Renderer::GetViewMatrix()
 {
 	return viewMatrix;

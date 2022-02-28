@@ -11,7 +11,7 @@ Tilemap::Tilemap(glm::vec3 pos, glm::vec3 scale)
 	tilesetScale = scale;
 }
 
-void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture)
+std::list<Tile*> Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture)
 {
 	tileset = tilesetTexture;
 	pugi::xml_document tilemapFile;
@@ -53,6 +53,8 @@ void Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath
 			dataCounter++;
 		}
 	}
+
+	return tileList;
 }
 
 void Tilemap::SetSolidTiles(std::list<int> solidTileList)

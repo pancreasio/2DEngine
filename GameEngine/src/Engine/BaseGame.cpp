@@ -5,11 +5,13 @@
 #include <iostream>
 
 #include "Shape.h"
+#include "Sprite.h"
 #include "Window.h"
 #include "Renderer.h"
 #include "Input.h"
 #include "Entity.h"
 #include "CollisionManager.h"
+#include "Tilemap.h"
 
 #include "glm/glm.hpp"
 #include"glm/gtc/matrix_transform.hpp"
@@ -73,4 +75,27 @@ int BaseGame::GameLoop()
 	delete input;
 	glfwTerminate();
 	return 0;
+}
+
+Shape* BaseGame::CreateShape(glm::vec3 pos, glm::vec3 setScale, Texture* tex, int drawLayer)
+{
+	Shape* newShape = new Shape(pos, setScale, tex);
+	renderer->AddEntityToLayer(newShape, drawLayer);
+	return newShape;
+}
+
+Sprite * BaseGame::CreateSprite(glm::vec3 pos, glm::vec3 setScale, Texture * tex, int drawLayer)
+{
+	Sprite* newSprite = new Sprite(pos, setScale, tex);
+	renderer->AddEntityToLayer(newSprite, drawLayer);
+	return newSprite;
+}
+
+void BaseGame::InitializeTilemap(Tilemap* targetTilemap, const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture, int drawLayer)
+{
+	std::list<Tile*>tileList = targetTilemap->InitializeTilemap(tileMapPath, tileSetPath, tilesetTexture);
+	for (auto it = tileList.begin(); it != tileList.end(); ++it)
+	{
+		renderer->AddEntityToLayer(*it, drawLayer);
+	}	
 }

@@ -24,6 +24,7 @@ public:
 	void Render(std::list<Entity*> objectList);// const;
 	void RenderLayers();
 	void SetBackgroundColor(float r, float g, float b, float a) const; 
+	void AddEntityToLayer(Entity* entityToAdd, int targetLayer);
 	glm::mat4 GetViewMatrix();
 	glm::mat4 GetProjMatrix();
 	std::map<int, std::list<Entity*>> layerMap;
