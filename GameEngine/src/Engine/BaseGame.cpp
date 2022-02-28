@@ -49,6 +49,8 @@ int BaseGame::GameLoop()
 {
 	GLFWwindow* currentWindow = window->getWindow();
 
+	renderer->layerMap[0] = entityList;
+
 	while (!glfwWindowShouldClose(currentWindow))
 	{
 		float currentTime = glfwGetTime();
@@ -62,7 +64,8 @@ int BaseGame::GameLoop()
 
 		//use renderer		
 		renderer->SetBackgroundColor(0.1f, 0.1f, 0.1f, 0.0f);
-		renderer->Render(entityList);
+		//renderer->Render(entityList);
+		renderer->RenderLayers();
 
 		/* Poll for and process events */
 		glfwPollEvents();

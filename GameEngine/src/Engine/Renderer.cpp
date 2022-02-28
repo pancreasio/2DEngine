@@ -28,6 +28,7 @@ Renderer::Renderer(Window* window)
 	//projMatrix = glm::perspectiveFov(45.0f, window->GetWidth(), window->GetHeight(), 0.f, 100.f);
 
 	SetShader();
+	layerMap.insert({ 0, baseLayer }); 
 }
 
 Renderer::~Renderer()
@@ -47,6 +48,22 @@ void Renderer::Render(std::list<Entity*> objectList)// const
 	for (std::list<Entity*>::iterator it = objectList.begin(); it != objectList.end(); it++)
 	{
 		RenderEntity(*it);
+	}
+
+	/* Swap front and back buffers */
+	glfwSwapBuffers(renderWindow);
+}
+
+void Renderer::RenderLayers()
+{
+	/* Render here */
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	/*draw elements*/
+	for (auto it = layerMap.begin(); it != layerMap.end(); ++it)
+	{
+		for(auto itr = (*it).second.begin(); itr!= (*it).second.end(); ++itr)
+			RenderEntity(*itr);
 	}
 
 	/* Swap front and back buffers */
