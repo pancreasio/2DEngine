@@ -26,9 +26,9 @@ public:
 	void SetPosition(glm::vec2 newPosition);
 
 	//Getters for buffers and pointers
-	GLuint GetVertexArray();
-	GLuint GetVertexBuffer();
-	GLuint GetElementBuffer();
+	unsigned int GetVertexArray();
+	unsigned int GetVertexBuffer();
+	unsigned int GetElementBuffer();
 	Texture* GetTexturePointer();
 	glm::mat4 GetModel();
 	unsigned int GetShader();
@@ -38,9 +38,9 @@ protected:
 	glm::vec3 scale;
 	glm::mat4 model;
 	unsigned int uniModel;
-	GLuint ebo;
-	GLuint vbo;
-	GLuint vertexArray;
+	unsigned int ebo;
+	unsigned int vbo;
+	unsigned int vertexArray;
 	Texture* texture;
 };
 #endif

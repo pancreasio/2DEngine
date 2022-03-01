@@ -25,6 +25,8 @@ public:
 	void RenderLayers();
 	void SetBackgroundColor(float r, float g, float b, float a) const; 
 	void AddEntityToLayer(Entity* entityToAdd, int targetLayer);
+	void InitializeShapeRenderBuffers(unsigned int &VAO, unsigned int &VBO, unsigned int &EBO, unsigned int &UVBO, glm::vec2 setScale);
+	void BufferNewUVData(unsigned int &UVBO , float leftU, float rightU, float topV, float bottomV);
 	glm::mat4 GetViewMatrix();
 	glm::mat4 GetProjMatrix();
 	std::map<int, std::list<Entity*>> layerMap;
