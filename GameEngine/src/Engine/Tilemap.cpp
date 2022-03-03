@@ -7,8 +7,8 @@
 
 Tilemap::Tilemap(glm::vec3 pos, glm::vec3 scale)
 {
-	tilesetPosition = pos;
-	tilesetScale = scale;
+	tilemapPosition = pos;
+	tilemapScale = scale;
 }
 
 std::list<Tile*> Tilemap::InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture)
@@ -34,9 +34,15 @@ std::list<Tile*> Tilemap::InitializeTilemap(const char* tileMapPath, const char*
 	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), ' '), tilemapData.end());
 	tilemapData.erase(std::remove(tilemapData.begin(), tilemapData.end(), '\n'), tilemapData.end());
 
-	zeroXPosition = tilesetPosition.x * tilesetScale.x - (float)width * tilesetScale.x *  (float)tileWidth / 2.f;
-	zeroYPosition = tilesetPosition.y * tilesetScale.y + (float)height * tilesetScale.y * (float)tileHeight / 2.f;
-	
+	zeroXPosition = tilemapPosition.x * tilemapScale.x - (float)width * tilemapScale.x *  (float)tileWidth / 2.f;
+	zeroYPosition = tilemapPosition.y * tilemapScale.y + (float)height * tilemapScale.y * (float)tileHeight / 2.f;
+
+	tileVector.resize(height);
+	for (int i = 0; i < height ; i++)
+	{
+		tileVector[i].resize(width);
+	}
+
 	int dataCounter = 0;
 	for (int i = 0; i < height; i++)
 	{
@@ -46,15 +52,18 @@ std::list<Tile*> Tilemap::InitializeTilemap(const char* tileMapPath, const char*
 			{
 				Tile* newTile = InstantiateTile(j, i, tilemapData[dataCounter] - 49);
 				tileList.push_back(newTile);
-				if(IsSolid(tilemapData[dataCounter] - 48))
+				tileVector[i][j] = newTile;
+				if (IsSolid(tilemapData[dataCounter] - 48))
+				{
 					solidTileList.push_back(newTile);
+					newTile->isSolid = true;
+				}
+
+				dataCounter++;
 			}
-			
-			dataCounter++;
 		}
 	}
-
-	return tileList;
+		return tileList;
 }
 
 void Tilemap::SetSolidTiles(std::list<int> solidTileList)
@@ -90,16 +99,59 @@ Tile* Tilemap::GetSolidTile(int tileNumber)
 	return *listIterator;
 }
 
+std::list<Tile*> Tilemap::GetSolidTilesOverlappingShape(Shape targetShape)
+{
+	std::list<Tile*> returnList;
+	int minXcoord = floorf((targetShape.GetPosition().x - targetShape.GetScale().x / 2.f - zeroXPosition - tileWidth * tilemapScale.x / 2.f) / (tileWidth*tilemapScale.x) + 1.f);
+	int minYcoord = -floorf((targetShape.GetPosition().y + targetShape.GetScale().y / 2.f - zeroYPosition - tileHeight * tilemapScale.y / 2.f) / (tileHeight*tilemapScale.y) + 1.f);
+
+	int maxXcoord = floorf((targetShape.GetPosition().x + targetShape.GetScale().x / 2.f - zeroXPosition - tileWidth * tilemapScale.x / 2.f) / (tileWidth*tilemapScale.x) + 1.f);
+	int maxYcoord = -floorf((targetShape.GetPosition().y - targetShape.GetScale().y / 2.f - zeroYPosition - tileHeight * tilemapScale.y / 2.f) / (tileHeight*tilemapScale.y) +1.f);
+
+	//adjusted formula: floor (left shape position - left tilemap position / tile size)
+	std::cout << "min: x=" << minXcoord << "  y=" << minYcoord << "  max: x=" << maxXcoord << "  y=" << maxYcoord << std::endl; //debug log
+
+	if (minXcoord < 0)
+		minXcoord = 0;
+	if (minYcoord < 0)
+		minYcoord = 0;
+
+	if (maxXcoord > (width - 1))
+		maxXcoord = width - 1;
+	if (maxYcoord > (height - 1))
+		maxYcoord = height - 1;
+
+	std::cout << "min: x=" << minXcoord << "  y=" << minYcoord << "  max: x=" << maxXcoord << "  y=" << maxYcoord << std::endl;
+
+	int checkCounter = 0;
+	for (int i = minYcoord; i <= maxYcoord; i++)
+	{
+		for (int j = minXcoord; j <= maxXcoord; j++)
+		{
+			//std::cout << "X= " << j << "  y=" << i;
+			if (tileVector[i][j]->isSolid)
+			{
+				returnList.push_back(tileVector[i][j]);
+			}
+				checkCounter++;
+			//std::cout << std::endl;
+		}
+	}
+
+	std::cout << "tiles checked: " << checkCounter << std::endl;
+	return returnList;
+}
+
 Tile* Tilemap::InstantiateTile(int xPosition, int yPosition, int tileNumber)
 {
-	float resultXPosition = zeroXPosition + (float)xPosition * tileWidth * tilesetScale.x;
-	float resultYPosition = zeroYPosition - (float)yPosition * tileHeight * tilesetScale.y;
+	float resultXPosition = zeroXPosition + (float)xPosition * tileWidth * tilemapScale.x;
+	float resultYPosition = zeroYPosition - (float)yPosition * tileHeight * tilemapScale.y;
 	glm::vec3 resultPosition = { resultXPosition, resultYPosition, 0.f };
 	float resultUcoord = getXTileCoordinate(tileNumber);
 	float resultVcoord = glm::abs(getYTileCoordinate(tileNumber) - tilesetRows + 1);
 	float resultWidth = 1.f / (float)tilesetColums;
 	float resultHeight = 1.f / (float)tilesetRows;
-	glm::vec3 resultScale = { tileWidth * tilesetScale.x, tileHeight * tilesetScale.y,1.f };
+	glm::vec3 resultScale = { tileWidth * tilemapScale.x, tileHeight * tilemapScale.y,1.f };
 
 	return new Tile(resultPosition, resultScale, tileset, resultUcoord, resultVcoord, resultWidth, resultHeight);
 

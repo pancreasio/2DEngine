@@ -23,17 +23,17 @@ void Game::Init()
 	Texture animTex("../res/anim.png");
 	Texture terrainTex("../res/terrain sprite.png");
 
-	shape = CreateShape({ 300,0,0 }, { 100,100,0 }, &bokeTex, 3);
-	shape2 = CreateShape({ 100.f,0.f,1.f }, { 90,90,0 }, &comuTex,2);
+	shape = CreateShape({ 300,0,0 }, { 100,100,0 }, &bokeTex, 1);
+	shape2 = CreateShape({ 0.f,0.f,1.f }, { 90,90,0 }, &comuTex,2);
 
-	anim = CreateSprite({ 200,0,0 }, { 36.8f, 20, 0 }, &animTex, 4);
+	anim = CreateSprite({ 200,0,0 }, { 36.8f, 20, 0 }, &animTex, 3);
 	anim->CreateAnimation(368, 368 / 8, 4);
 	anim->SetCurrentAnimation(8, 0, 0.4);
 	
 	tilemap = new Tilemap({ 0.f,0.f,0.f }, { 3.f,3.f,1.f });
 	tilemap->SetSolidTiles({ 3 });
 	/*tilemap->InitializeTilemap("../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex);*/
-	InitializeTilemap(tilemap,"../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex,3);
+	InitializeTilemap(tilemap,"../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex,-1);
 	safePositionExists = false;
 	safePosition = { 0.f,0.f };
 
@@ -126,6 +126,12 @@ void Game::Update(const float deltaTime)
 		anim->SetCurrentAnimation(8, 0, 0.4);
 	}
 
+
+	if (input->GetKey(GLFW_KEY_V))
+	{
+		tilemap->GetSolidTilesOverlappingShape(*shape2);
+	}
+
 	//collisions
 
 	/*if (collisionManager->CheckCollision(*shape, *shape2)) 
@@ -139,14 +145,14 @@ void Game::Update(const float deltaTime)
 		safePositionExists = true;
 	}*/
 	
-	if(collisionManager->CheckCollision(*shape2, *tilemap))
+	if(collisionManager->CheckCollisionOptimized(*anim, *tilemap))
 	{
 		if (safePositionExists)
-			shape2->SetPosition(safePosition);
+			anim->SetPosition(safePosition);
 	}
 	else
 	{
-		safePosition = shape2->GetPosition();
+		safePosition = anim->GetPosition();
 		safePositionExists = true;
 	}
 	

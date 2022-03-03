@@ -5,7 +5,8 @@
 #include "Tile.h"
 #include "Texture.h"
 
-#define MAXTILENUMBER 100
+#include <list>
+#include <vector>
 
 #define EXPORTDLL _declspec(dllexport)
 
@@ -22,19 +23,20 @@ private:
 	int tilesetRows;
 	int tilesetColums;
 
-	glm::vec3 tilesetScale;
-	glm::vec3 tilesetPosition;
-	
+	glm::vec3 tilemapScale;
+	glm::vec3 tilemapPosition;
+
 	Texture* tileset;
 
 	float zeroXPosition;
 	float zeroYPosition;
-	
+
 	std::list<int> solidTiles;
-	
+
 	std::list<Tile*> tileList;
+	std::vector<std::vector<Tile*>> tileVector;
 	std::list<Tile*> solidTileList;
-	
+
 public:
 	Tilemap(glm::vec3 pos, glm::vec3 scale);
 	std::list<Tile*> InitializeTilemap(const char* tileMapPath, const char* tileSetPath, Texture* tilesetTexture);
@@ -45,6 +47,7 @@ public:
 	int GetSolidTileCount();
 	Tile* GetTile(int tileNumber);
 	Tile* GetSolidTile(int tileNumber);
+	std::list<Tile*> GetSolidTilesOverlappingShape(Shape targetShape);
 
 protected:
 	Tile* InstantiateTile(int xPosition, int yPosition, int tileNumber);

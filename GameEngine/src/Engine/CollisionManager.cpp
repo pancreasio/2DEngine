@@ -25,3 +25,16 @@ bool CollisionManager::CheckCollision(Shape shape, Tilemap tilemap)
 	}
 	return  false;
 }
+
+bool CollisionManager::CheckCollisionOptimized(Shape shape, Tilemap tilemap)
+{
+	std::list<Tile*> tilesInRange = tilemap.GetSolidTilesOverlappingShape(shape);
+	for (std::list<Tile*>::iterator it = tilesInRange.begin(); it != tilesInRange.end(); ++it)
+	{
+		if (CheckCollision(shape, (Shape)**it))
+		{
+			return true;
+		}
+	}
+	return false;
+}
