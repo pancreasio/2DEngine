@@ -15,6 +15,7 @@ class EXPORTDLL Tilemap
 private:
 	int height;
 	int width;
+	int tileCount;
 	int tileHeight;
 	int tileWidth;
 	int tilesetHeight;
@@ -33,9 +34,7 @@ private:
 
 	std::list<int> solidTiles;
 
-	std::list<Tile*> tileList;
 	std::vector<std::vector<Tile*>> tileVector;
-	std::list<Tile*> solidTileList;
 
 public:
 	Tilemap(glm::vec3 pos, glm::vec3 scale);
@@ -44,9 +43,7 @@ public:
 	int GetHeight() { return height; }
 	int GetTilesetTileCount() { return tilesetTilecount; }
 	int GetTileCount();
-	int GetSolidTileCount();
 	Tile* GetTile(int tileNumber);
-	Tile* GetSolidTile(int tileNumber);
 	std::list<Tile*> GetSolidTilesOverlappingShape(Shape targetShape);
 
 protected:

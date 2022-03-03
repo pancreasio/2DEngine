@@ -46,12 +46,12 @@ void Game::Update(const float deltaTime)
 
 	if (input->GetKey(GLFW_KEY_H))
 	{
-		anim->Scale({ 1.1f,1.1f,1.1f });
+		shape2->Scale({ 1.f + shapeScaleSpeed,1.f + shapeScaleSpeed,1.f + shapeScaleSpeed });
 	}
 
 	if (input->GetKey(GLFW_KEY_K))
 	{
-		anim->Scale({ 0.9f,0.9f,0.9f });
+		shape2->Scale({ 1.f - shapeScaleSpeed,1.f - shapeScaleSpeed,1.f - shapeScaleSpeed });
 	}
 
 	if (input->GetKey(GLFW_KEY_N))
@@ -86,21 +86,21 @@ void Game::Update(const float deltaTime)
 	//translating
 	if (input->GetKey(GLFW_KEY_A))
 	{
-		shape2->Translate(-60.f *shapeMovespeed, { 1.0f,0.0f,0.0f });
+		shape2->Translate(-shapeMovespeed * deltaTime, { 1.0f,0.0f,0.0f });
 	}
 
 	if (input->GetKey(GLFW_KEY_D))
 	{
-		shape2->Translate(60.f*shapeMovespeed, { 1.0f,0.0f,0.0f });
+		shape2->Translate(shapeMovespeed * deltaTime, { 1.0f,0.0f,0.0f });
 	}
 
 	if (input->GetKey(GLFW_KEY_W))
 	{
-		shape2->Translate(60.f*shapeMovespeed, { 0.0f,1.0f,0.0f });
+		shape2->Translate(shapeMovespeed * deltaTime, { 0.0f,1.0f,0.0f });
 	}
 	if (input->GetKey(GLFW_KEY_S))
 	{
-		shape2->Translate(-60.f*shapeMovespeed, { 0.0f,1.0f,0.0f });
+		shape2->Translate(-shapeMovespeed * deltaTime, { 0.0f,1.0f,0.0f });
 	}
 
 	if (input->GetKey(GLFW_KEY_LEFT))
@@ -145,14 +145,14 @@ void Game::Update(const float deltaTime)
 		safePositionExists = true;
 	}*/
 	
-	if(collisionManager->CheckCollisionOptimized(*anim, *tilemap))
+	if(collisionManager->CheckCollision(*shape2, *tilemap))
 	{
 		if (safePositionExists)
-			anim->SetPosition(safePosition);
+			shape2->SetPosition(safePosition);
 	}
 	else
 	{
-		safePosition = anim->GetPosition();
+		safePosition = shape2->GetPosition();
 		safePositionExists = true;
 	}
 	

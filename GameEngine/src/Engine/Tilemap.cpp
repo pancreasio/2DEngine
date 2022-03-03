@@ -43,27 +43,26 @@ std::list<Tile*> Tilemap::InitializeTilemap(const char* tileMapPath, const char*
 		tileVector[i].resize(width);
 	}
 
-	int dataCounter = 0;
+	std::list<Tile*> returnList;
+	tileCount = 0;
 	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
 		{
-			if (tilemapData[dataCounter] > 48)
+			if (tilemapData[tileCount] > 48)
 			{
-				Tile* newTile = InstantiateTile(j, i, tilemapData[dataCounter] - 49);
-				tileList.push_back(newTile);
+				Tile* newTile = InstantiateTile(j, i, tilemapData[tileCount] - 49);
 				tileVector[i][j] = newTile;
-				if (IsSolid(tilemapData[dataCounter] - 48))
+				returnList.push_back(newTile);
+				if (IsSolid(tilemapData[tileCount] - 48))
 				{
-					solidTileList.push_back(newTile);
 					newTile->isSolid = true;
 				}
-
-				dataCounter++;
+				tileCount++;
 			}
 		}
 	}
-		return tileList;
+		return returnList;
 }
 
 void Tilemap::SetSolidTiles(std::list<int> solidTileList)
@@ -73,30 +72,16 @@ void Tilemap::SetSolidTiles(std::list<int> solidTileList)
 
 int Tilemap::GetTileCount()
 {
-	return tileList.size();
+	return tileCount;
 }
 
-int Tilemap::GetSolidTileCount()
-{
-	return solidTileList.size();
-}
 
 Tile* Tilemap::GetTile(int tileNumber)
 {
-	std::list<Tile*>::iterator listIterator = tileList.begin();
+	int returnY = floor((float)tileNumber / (float)tileHeight);
+	int returnX = tileNumber - (returnY * width);
 
-	std::advance(listIterator, tileNumber);
-
-	return *listIterator;
-}
-
-Tile* Tilemap::GetSolidTile(int tileNumber)
-{
-	std::list<Tile*>::iterator listIterator = solidTileList.begin();
-
-	std::advance(listIterator, tileNumber);
-
-	return *listIterator;
+	return tileVector[returnY][returnX];
 }
 
 std::list<Tile*> Tilemap::GetSolidTilesOverlappingShape(Shape targetShape)
@@ -109,7 +94,7 @@ std::list<Tile*> Tilemap::GetSolidTilesOverlappingShape(Shape targetShape)
 	int maxYcoord = -floorf((targetShape.GetPosition().y - targetShape.GetScale().y / 2.f - zeroYPosition - tileHeight * tilemapScale.y / 2.f) / (tileHeight*tilemapScale.y) +1.f);
 
 	//adjusted formula: floor (left shape position - left tilemap position / tile size)
-	std::cout << "min: x=" << minXcoord << "  y=" << minYcoord << "  max: x=" << maxXcoord << "  y=" << maxYcoord << std::endl; //debug log
+	//std::cout << "min: x=" << minXcoord << "  y=" << minYcoord << "  max: x=" << maxXcoord << "  y=" << maxYcoord << std::endl; //debug log
 
 	if (minXcoord < 0)
 		minXcoord = 0;
@@ -121,9 +106,9 @@ std::list<Tile*> Tilemap::GetSolidTilesOverlappingShape(Shape targetShape)
 	if (maxYcoord > (height - 1))
 		maxYcoord = height - 1;
 
-	std::cout << "min: x=" << minXcoord << "  y=" << minYcoord << "  max: x=" << maxXcoord << "  y=" << maxYcoord << std::endl;
+	//std::cout << "min: x=" << minXcoord << "  y=" << minYcoord << "  max: x=" << maxXcoord << "  y=" << maxYcoord << std::endl;
 
-	int checkCounter = 0;
+	//int checkCounter = 0;
 	for (int i = minYcoord; i <= maxYcoord; i++)
 	{
 		for (int j = minXcoord; j <= maxXcoord; j++)
@@ -133,12 +118,12 @@ std::list<Tile*> Tilemap::GetSolidTilesOverlappingShape(Shape targetShape)
 			{
 				returnList.push_back(tileVector[i][j]);
 			}
-				checkCounter++;
+				//checkCounter++;
 			//std::cout << std::endl;
 		}
 	}
 
-	std::cout << "tiles checked: " << checkCounter << std::endl;
+	//std::cout << "tiles checked: " << checkCounter << std::endl;
 	return returnList;
 }
 
