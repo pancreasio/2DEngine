@@ -33,7 +33,7 @@ void Game::Init()
 	tilemap = new Tilemap({ 0.f,0.f,0.f }, { 3.f,3.f,1.f });
 	tilemap->SetSolidTiles({ 3 });
 	/*tilemap->InitializeTilemap("../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex);*/
-	InitializeTilemap(tilemap,"../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex,-1);
+	InitializeTilemap(tilemap,"../res/terrainTilemap.xml", "../res/terrainTileset.xml", &terrainTex,0);
 	safePositionExists = false;
 	safePosition = { 0.f,0.f };
 

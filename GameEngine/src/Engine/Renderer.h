@@ -26,15 +26,16 @@ public:
 	void SetBackgroundColor(float r, float g, float b, float a) const; 
 	void AddEntityToLayer(Entity* entityToAdd, int targetLayer);
 	void InitializeShapeRenderBuffers(unsigned int &VAO, unsigned int &VBO, unsigned int &EBO, unsigned int &UVBO, glm::vec2 setScale);
+	void DeleteShapeRenderBuffers(unsigned int &VAO, unsigned int &VBO, unsigned int &EBO, unsigned int &UVBO);
 	void BufferNewUVData(unsigned int &UVBO , float leftU, float rightU, float topV, float bottomV);
 	glm::mat4 GetViewMatrix();
 	glm::mat4 GetProjMatrix();
-	std::map<int, std::list<Entity*>> layerMap;
 	GLuint GetShader();
 private:
 	void SetShader();
 	void RenderEntity(Entity* entityToRender);
 	unsigned int uniModel;
+	std::map<int, std::list<Entity*>> layerMap;
 	glm::mat4 viewMatrix;
 	glm::mat4 projMatrix;
 	GLuint programID; 

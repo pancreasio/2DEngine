@@ -21,7 +21,7 @@ private:
 	glm::vec2 safePosition;
 	bool safePositionExists;
 	float shapeMovespeed = 30000.f;
-	float shapeScaleSpeed = 0.001f;
+	float shapeScaleSpeed = 0.01f;
 };
 
 #endif

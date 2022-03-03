@@ -108,7 +108,7 @@ std::list<Tile*> Tilemap::GetSolidTilesOverlappingShape(Shape targetShape)
 
 	//std::cout << "min: x=" << minXcoord << "  y=" << minYcoord << "  max: x=" << maxXcoord << "  y=" << maxYcoord << std::endl;
 
-	//int checkCounter = 0;
+	int checkCounter = 0;
 	for (int i = minYcoord; i <= maxYcoord; i++)
 	{
 		for (int j = minXcoord; j <= maxXcoord; j++)
@@ -118,12 +118,12 @@ std::list<Tile*> Tilemap::GetSolidTilesOverlappingShape(Shape targetShape)
 			{
 				returnList.push_back(tileVector[i][j]);
 			}
-				//checkCounter++;
+				checkCounter++;
 			//std::cout << std::endl;
 		}
 	}
 
-	//std::cout << "tiles checked: " << checkCounter << std::endl;
+	std::cout << "tiles checked: " << checkCounter << std::endl;
 	return returnList;
 }
 

@@ -6,30 +6,30 @@
 
 Shape::Shape()
 {
-	glGenVertexArrays(1, &vertexArray);
-	glBindVertexArray(vertexArray);
+	//glGenVertexArrays(1, &vertexArray);
+	//glBindVertexArray(vertexArray);
 
-	static const GLfloat g_vertex_buffer_data[] = {
-		1.f, -1.f, 0.0f, 1.0f, 1.f, 1.0f, 1.0f, 0.0f,//top-left
-		-1.f, 1.f, 0.0f, 1.0f, 1.f, 1.0f, 0.0f, 1.0f,//top-right
-		-1.f, -1.f, 0.0f, 1.0f, 1.f, 1.0f, 0.0f, 0.0f,//bottom-left
-		1.f, 1.f, 0.0f, 1.0f, 1.f, 1.0f, 1.0f, 1.0f,//bottom-right  
-	};
+	//static const GLfloat g_vertex_buffer_data[] = {
+	//	1.f, -1.f, 0.0f, 1.0f, 1.f, 1.0f, 1.0f, 0.0f,//top-left
+	//	-1.f, 1.f, 0.0f, 1.0f, 1.f, 1.0f, 0.0f, 1.0f,//top-right
+	//	-1.f, -1.f, 0.0f, 1.0f, 1.f, 1.0f, 0.0f, 0.0f,//bottom-left
+	//	1.f, 1.f, 0.0f, 1.0f, 1.f, 1.0f, 1.0f, 1.0f,//bottom-right  
+	//};
 
-	// Create a Vertex Buffer Object and copy the vertex data to it
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+	//// Create a Vertex Buffer Object and copy the vertex data to it
+	//glGenBuffers(1, &vbo);
+	//glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
-	GLuint elements[] =
-	{
-		0, 1, 2, 3
-	};
+	//GLuint elements[] =
+	//{
+	//	0, 1, 2, 3
+	//};
 
-	// Create an element array
-	glGenBuffers(1, &ebo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+	//// Create an element array
+	//glGenBuffers(1, &ebo);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
 
 }
 
@@ -98,11 +98,13 @@ Shape::Shape(glm::vec3 pos, glm::vec3 setScale, Texture* tex) : Entity(pos, tex)
 
 Shape::~Shape()
 {
-	glBindVertexArray(0);
+	/*glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glDeleteBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, ebo);
-	glDeleteBuffers(1, &ebo);
+	glDeleteBuffers(1, &ebo);*/
+	if(renderer!=nullptr)
+		renderer->DeleteShapeRenderBuffers(vertexArray, vbo, ebo, uvbo);
 }
 
 void Shape::BufferUVData(float leftU, float rightU, float topV, float bottomV)

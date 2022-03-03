@@ -51,8 +51,6 @@ int BaseGame::GameLoop()
 {
 	GLFWwindow* currentWindow = window->getWindow();
 
-	renderer->layerMap[0] = entityList;
-
 	while (!glfwWindowShouldClose(currentWindow))
 	{
 		float currentTime = glfwGetTime();

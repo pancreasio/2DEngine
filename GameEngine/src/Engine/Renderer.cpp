@@ -158,6 +158,17 @@ void Renderer::InitializeShapeRenderBuffers(unsigned int &VAO, unsigned int &VBO
 	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE,  2 * sizeof(float), (void*)0);
 }
 
+void Renderer::DeleteShapeRenderBuffers(unsigned int & VAO, unsigned int & VBO, unsigned int & EBO, unsigned int & UVBO)
+{
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glDeleteBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, EBO);
+	glDeleteBuffers(1, &EBO);
+	glBindBuffer(GL_ARRAY_BUFFER, UVBO);
+	glDeleteBuffers(1, &UVBO);
+}
+
 void Renderer::BufferNewUVData(unsigned int &UVBO, float leftU, float rightU, float topV, float bottomV)
 {
 	const float uvArray[] =
